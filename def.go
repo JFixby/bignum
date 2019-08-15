@@ -9,9 +9,6 @@ type BigNum interface {
 }
 
 type BigNumEngine interface {
-	ONE() BigNum
-	ZERO() BigNum
-	TWO() BigNum
 	NewBigNum(value interface{}) BigNum
 }
 
@@ -19,16 +16,6 @@ var Engine = defaultBigNumEngine()
 
 func defaultBigNumEngine() BigNumEngine {
 	return &Float64Engine{}
-}
-
-func ZERO() BigNum {
-	return Engine.ZERO()
-}
-func ONE() BigNum {
-	return Engine.ONE()
-}
-func TWO() BigNum {
-	return Engine.TWO()
 }
 
 func NewBigNum(value interface{}) BigNum {

@@ -1,38 +1,75 @@
 package bignum
 
+import (
+	"fmt"
+	"reflect"
+)
+
 type Float64Engine struct {
-	zero *Float64Num
-	one  *Float64Num
-	two  *Float64Num
+}
+
+func (e Float64Engine) NewBigNum(v interface{}) BigNum {
+	floatVal := 0.0
+	switch v.(type) {
+	case float64:
+		floatVal = v.(float64)
+	case int:
+		floatVal = float64(v.(int))
+	case int64:
+		floatVal = float64(v.(int64))
+	default:
+		panic(fmt.Sprintf("Unsupported type: %v(%v)", v, reflect.TypeOf(v)))
+	}
+	return &Float64Num{
+		value: float64(floatVal),
+	}
 }
 
 type Float64Num struct {
 	value float64
 }
 
-func (e Float64Engine) ZERO() *Float64Num {
-	if e.zero == nil {
-		e.zero = e.NewBigNum(0)
-	}
-	return e.zero
+func (n *Float64Num) Add(a BigNum, b BigNum) BigNum {
+	af := a.(*Float64Num)
+	bf := b.(*Float64Num)
+
+	n.value = af.value + bf.value
+	return n
 }
 
-func (e Float64Engine) ONE() *Float64Num {
-	if e.one == nil {
-		e.one = e.NewBigNum(1)
-	}
-	return e.one
+func (n *Float64Num) SetFrac(a BigNum, b BigNum) BigNum {
+	af := a.(*Float64Num)
+	bf := b.(*Float64Num)
+
+	n.value = af.value / bf.value
+	return n
 }
 
-func (e Float64Engine) TWO() *Float64Num {
-	if e.two == nil {
-		e.two = e.NewBigNum(0)
-	}
-	return e.two
+func (n *Float64Num) Mul(a BigNum, b BigNum) BigNum {
+	af := a.(*Float64Num)
+	bf := b.(*Float64Num)
+
+	n.value = af.value * bf.value
+	return n
 }
 
-func (e Float64Engine) NewBigNum(value interface{}) *Float64Num {
-	return &Float64Num{
-		value: float64(value),
+func (n *Float64Num) Neg(num BigNum) BigNum {
+	numf := num.(*Float64Num)
+	n.value = -numf.value
+	return n
+}
+
+func (n *Float64Num) Cmp(num BigNum) int {
+	numf := num.(*Float64Num)
+	if n.value > numf.value {
+		return 1
 	}
+	if n.value < numf.value {
+		return -1
+	}
+	return 0
+}
+
+func (n *Float64Num) String() string {
+	return fmt.Sprintf("%v", n.value)
 }

@@ -37,14 +37,14 @@ func calcSubsidy(subsidyBlocksNumber int64, height int64, totalSubsidy float64) 
 	//lastBlockIndex := new(big.Int).SetInt64(subsidyBlocksNumber - 1)
 	lastBlockIndex := NewBigNum(subsidyBlocksNumber - 1)
 	if H.Cmp(lastBlockIndex) > 0 {
-		return ZERO()
+		return NewBigNum(0)
 	}
 	//endSubsidy := float64(0)               // 0 coins
 
 	//return totalSubsidy * 2.0 * (lastBlockIndex - H) / (N * lastBlockIndex)
 	H = H.Neg(H)                 // -H
 	H = H.Add(lastBlockIndex, H) // (lastBlockIndex - H)
-	H = H.Mul(TWO(), H)          // 2.0 * (lastBlockIndex - H)
+	H = H.Mul(NewBigNum(2), H)          // 2.0 * (lastBlockIndex - H)
 	N = N.Mul(N, lastBlockIndex) // (N * lastBlockIndex)
 
 	//subsidy := big.NewRat(1, 1)
