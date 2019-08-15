@@ -73,3 +73,7 @@ func (n *Float64Num) Cmp(num BigNum) int {
 func (n *Float64Num) String() string {
 	return fmt.Sprintf("%v", n.value)
 }
+
+func (n *Float64Num) ToFloat64() float64 {
+	return n.value
+}

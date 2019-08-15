@@ -24,7 +24,7 @@ func runTest() {
 		totalSubsidy = totalSubsidy.Add(totalSubsidy, sub)
 		pin.D(fmt.Sprintf("%v", blockNum), sub)
 	}
-	pin.D(fmt.Sprintf("totalSubsidy"), totalSubsidy)
+	pin.D(fmt.Sprintf("totalSubsidy"), totalSubsidy.ToFloat64())
 }
 
 func calcSubsidy(subsidyBlocksNumber int64, height int64, totalSubsidy float64) BigNum {

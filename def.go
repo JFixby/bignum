@@ -6,6 +6,7 @@ type BigNum interface {
 	Mul(x BigNum, y BigNum) BigNum
 	Neg(num BigNum) BigNum
 	Cmp(num BigNum) int
+	ToFloat64() float64
 }
 
 type BigNumEngine interface {
