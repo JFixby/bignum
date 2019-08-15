@@ -14,12 +14,3 @@ type BigNumEngine interface {
 	NewBigNum(value interface{}) BigNum
 }
 
-var Engine = defaultBigNumEngine()
-
-func defaultBigNumEngine() BigNumEngine {
-	return &Float64Engine{}
-}
-
-func NewBigNum(value interface{}) BigNum {
-	return Engine.NewBigNum(value)
-}
