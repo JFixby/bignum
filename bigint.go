@@ -74,3 +74,7 @@ func (n *RatNum) ToFloat64() float64 {
 	f, _ := n.value.Float64()
 	return f
 }
+
+func (n *RatNum) ToInt64() int64 {
+	return int64(n.ToFloat64())
+}

@@ -77,3 +77,7 @@ func (n *Float64Num) String() string {
 func (n *Float64Num) ToFloat64() float64 {
 	return n.value
 }
+
+func (n *Float64Num) ToInt64() int64 {
+	return int64(n.value)
+}

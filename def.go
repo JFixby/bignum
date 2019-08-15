@@ -7,6 +7,7 @@ type BigNum interface {
 	Neg(num BigNum) BigNum
 	Cmp(num BigNum) int
 	ToFloat64() float64
+	ToInt64() int64
 }
 
 type BigNumEngine interface {
