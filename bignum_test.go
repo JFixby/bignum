@@ -8,10 +8,10 @@ import (
 func TestFrac(t *testing.T) {
 	var engine BigNumEngine
 	engine = BigDecimalEngine{}
-	one := engine.NewBigNum(1)
-	five := engine.NewBigNum(5)
+	one := engine.NewBigNum(3)
+	five := engine.NewBigNum(7)
 	one = one.SetFrac(one, five)
-	exp := float64(1) / float64(5)
+	exp := float64(3) / float64(7)
 	if one.ToFloat64() != exp {
 		t.Fatalf("Incorrect division -- \n got %v, \nwant %v", one.ToFloat64(), exp)
 	}
