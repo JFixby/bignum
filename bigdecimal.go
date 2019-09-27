@@ -43,8 +43,18 @@ func (n *RatNum) Add(a BigNum, b BigNum) BigNum {
 func (n *RatNum) SetFrac(a BigNum, b BigNum) BigNum {
 	af := a.(*RatNum)
 	bf := b.(*RatNum)
-	n.value.Inv(bf.value)
-	n.value.Mul(af.value, n.value)
+
+	tmp := big.NewRat(1, 1)
+	//
+	//pin.D("a", a)
+	//pin.D("b", b)
+	//pin.D("n", n)
+	tmp.Inv(bf.value)
+	//pin.D("tmp", tmp)
+	tmp.Mul(af.value, tmp)
+	//pin.D("tmp", tmp)
+	n.value.Set(tmp)
+	//pin.D("n", n)
 	return n
 }
 

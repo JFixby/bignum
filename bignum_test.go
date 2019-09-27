@@ -5,6 +5,18 @@ import (
 	"testing"
 )
 
+func TestFrac(t *testing.T) {
+	var engine BigNumEngine
+	engine = BigDecimalEngine{}
+	one := engine.NewBigNum(1)
+	five := engine.NewBigNum(5)
+	one = one.SetFrac(one, five)
+	exp := float64(1) / float64(5)
+	if one.ToFloat64() != exp {
+		t.Fatalf("Incorrect division -- \n got %v, \nwant %v", one.ToFloat64(), exp)
+	}
+}
+
 func TestCalcSubsidy(t *testing.T) {
 	subsidyBlocksNumber := int64(3)
 	targetTotalSubsidy := float64(1)
@@ -53,10 +65,10 @@ func calcSubsidy(engine BigNumEngine, subsidyBlocksNumber int64, height int64, t
 	//endSubsidy := float64(0)               // 0 coins
 
 	//return totalSubsidy * 2.0 * (lastBlockIndex - H) / (N * lastBlockIndex)
-	H = H.Neg(H)                 // -H
-	H = H.Add(lastBlockIndex, H) // (lastBlockIndex - H)
-	H = H.Mul(engine.NewBigNum(2), H)   // 2.0 * (lastBlockIndex - H)
-	N = N.Mul(N, lastBlockIndex) // (N * lastBlockIndex)
+	H = H.Neg(H)                      // -H
+	H = H.Add(lastBlockIndex, H)      // (lastBlockIndex - H)
+	H = H.Mul(engine.NewBigNum(2), H) // 2.0 * (lastBlockIndex - H)
+	N = N.Mul(N, lastBlockIndex)      // (N * lastBlockIndex)
 
 	//subsidy := big.NewRat(1, 1)
 	subsidy := engine.NewBigNum(1)
