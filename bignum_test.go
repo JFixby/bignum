@@ -6,12 +6,12 @@ import (
 )
 
 func TestCalcSubsidy(t *testing.T) {
-	subsidyBlocksNumber := int64(16)
+	subsidyBlocksNumber := int64(3)
 	targetTotalSubsidy := float64(1)
 	var engine BigNumEngine
 	engine = Float64Engine{}
 	resultFloat64 := testCalcSubsidy(engine, subsidyBlocksNumber, targetTotalSubsidy, 1).ToFloat64()
-	engine = BigIntEngine{}
+	engine = BigDecimalEngine{}
 	resultBigFloat := testCalcSubsidy(engine, subsidyBlocksNumber, targetTotalSubsidy, 1).ToFloat64()
 
 	if resultFloat64 != (resultBigFloat) {
