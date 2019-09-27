@@ -6,10 +6,10 @@ import (
 	"reflect"
 )
 
-type BigIntEngine struct {
+type BigDecimalEngine struct {
 }
 
-func (e BigIntEngine) NewBigNum(v interface{}) BigNum {
+func (e BigDecimalEngine) NewBigNum(v interface{}) BigNum {
 	floatVal := 0.0
 	switch v.(type) {
 	case float64:
