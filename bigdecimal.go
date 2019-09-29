@@ -9,6 +9,11 @@ import (
 type BigDecimalEngine struct {
 }
 
+
+func (n BigDecimalEngine) String() string {
+	return "bignum.BigDecimalEngine"
+}
+
 func (e BigDecimalEngine) NewBigNum(v interface{}) BigNum {
 	floatVal := 0.0
 	switch v.(type) {
@@ -76,7 +81,7 @@ func (n *RatNum) Cmp(num BigNum) int {
 	return n.value.Cmp(numf.value)
 }
 
-func (n *RatNum) String() string {
+func (n RatNum) String() string {
 	return fmt.Sprintf("%v", n.value)
 }
 

@@ -8,6 +8,10 @@ import (
 type Float64Engine struct {
 }
 
+func (n Float64Engine) String() string {
+	return "bignum.Float64Engine"
+}
+
 func (e Float64Engine) NewBigNum(v interface{}) BigNum {
 	floatVal := 0.0
 	switch v.(type) {
@@ -70,7 +74,7 @@ func (n *Float64Num) Cmp(num BigNum) int {
 	return 0
 }
 
-func (n *Float64Num) String() string {
+func (n Float64Num) String() string {
 	return fmt.Sprintf("%v", n.value)
 }
 
